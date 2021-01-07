@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const server = express();
-const jwt = require("jsonwebtoken");
-const sequelize = require("sequelize");
 const CLAVE_CIFRADO_SERVER = "MICLAVEPROYECTO3";
 const btoa = require("btoa");
 const { query } = require("express");
+const jwt = require("jsonwebtoken");
+const sequelize = require("sequelize");
 const e = require("express");
 
 const conexion = new sequelize("mysql://root:@127.0.0.1:3306/delilah_resto");
