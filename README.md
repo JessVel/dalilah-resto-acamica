@@ -19,6 +19,6 @@ Correr el proyecto con el script start o desde la terminal nodemon server.js
 
 ### Ejemplo de endpoint
 
-http://localhost:3000/login
-usuario: admin
-contraseña: 12345
+http://localhost:3000/login <br/>
+usuario: admin <br/>
+contraseña: 12345 <br/>
