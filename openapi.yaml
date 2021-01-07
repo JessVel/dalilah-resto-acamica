@@ -1,0 +1,291 @@
+openapi: 3.0.2
+info:
+  title: API de Delilah Restó
+  description: "REST API que permita realizar operaciones CRUD sobre una estructura de datos para un restaurant"
+  version: 1.0.0
+servers:
+  - url: /localhost
+paths:
+  /usuario:
+    post:
+      summary: Creacion de un usuario nuevo
+      description: Aqui podras crear un nuevo usuario
+      parameters:
+        - in: query
+          name: usuario
+          required: true
+          schema:
+            $ref: "#/components/schemas/usuario"
+      responses:
+        "201":
+          description: Se creo el usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/usuario"
+
+  /datosUsuario:
+    get:
+      summary: Obtener usuario por usuario y contrasena
+      description: Aqui te damos un solo usuario
+      parameters:
+        - in: path
+          name: usuario
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: contrasena
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Todo bien
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/datosUsuario"
+
+  "/login/{usuario},{contrasena}":
+    post:
+      summary: Obtener los datos del usuario que esta en el sistema
+      description: Aqui te damos un solo usuario
+      parameters:
+        - in: path
+          name: usuario
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: contrasena
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Todo bien
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+
+  /producto:
+    get:
+      summary: Se obtienen todos los productos
+      description: Lista de todos los productos ordenados alfabeticamente
+      responses:
+        "200":
+          description: Todo salio bien
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/producto"
+        "404":
+          description: No queremos darte resultados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    default: 404
+                  message:
+                    type: string
+        "500":
+          description: El servidor se cayo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    default: 500
+                  message:
+                    type: string
+    post:
+      summary: Creacion de un producto
+      description: Aqui podras crear un producto
+      parameters:
+        - in: query
+          name: producto
+          required: true
+          schema:
+            $ref: "#/components/schemas/producto"
+      responses:
+        "201":
+          description: Se creó el producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/producto"
+
+    put:
+      summary: Actualizar un producto existente
+      description: Aqui podras actualizar un producto
+      parameters:
+        - in: query
+          name: producto
+          required: true
+          schema:
+            $ref: "#/components/schemas/producto"
+      responses:
+        "201":
+          description: Se actualizó el producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/producto"
+
+    delete:
+      summary: Borrar un producto
+      description: Aqui podras borrar un producto por id
+      parameters:
+        - in: query
+          name: producto
+          required: true
+          schema:
+            $ref: "#/components/schemas/producto"
+      responses:
+        "201":
+          description: Se borró el producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/producto"
+
+  /pedido:
+    get:
+      summary: Se obtienen todos los pedidos
+      description: Lista de todos los pedidos ordenados alfabeticamente
+      responses:
+        "200":
+          description: Todo salio bien
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/pedido"
+        "404":
+          description: No queremos darte resultados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    default: 404
+                  message:
+                    type: string
+        "500":
+          description: El servidor se cayo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    default: 500
+                  message:
+                    type: string
+    post:
+      summary: Creacion de un pedido
+      description: Aqui podras crear un pedido
+      parameters:
+        - in: query
+          name: pedido
+          required: true
+          schema:
+            $ref: "#/components/schemas/pedido"
+      responses:
+        "201":
+          description: Se creo el pedido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pedido"
+
+    put:
+      summary: Actualizar el estado de un pedido
+      description: Aqui podras actualizar el estado de un pedido
+      parameters:
+        - in: query
+          name: producto
+          required: true
+          schema:
+            $ref: "#/components/schemas/pedido"
+      responses:
+        "201":
+          description: Se actualizó el estado de el pedido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pedido"
+
+components:
+  schemas:
+    usuario:
+      type: object
+      properties:
+        id:
+          type: string
+        usuario:
+          type: string
+        contrasena:
+          type: string
+        nombre_apellido:
+          type: string
+        e_mail:
+          type: string
+        telefono:
+          type: string
+        direccion:
+          type: string
+        es_admin:
+          type: string
+
+    producto:
+      type: object
+      properties:
+        id:
+          type: string
+        descripcion:
+          type: string
+        precio:
+          type: string
+
+    pedido:
+      type: object
+      properties:
+        id:
+          type: string
+        estado:
+          $ref: "#/components/schemas/estado"
+        forma-pago:
+          $ref: "#/components/schemas/forma-pago"
+        usuario:
+          $ref: "#/components/schemas/usuario"
+        fecha-hora:
+          type: string
+          format: date
+        detalle-pedido:
+          type: array
+          items:
+            $ref: "#/components/schemas/detalle-pedido"
+
+    detalle-pedido:
+      type: object
+      properties:
+        pedido:
+          $ref: "#/components/schemas/pedido"
+        producto:
+          $ref: "#/components/schemas/producto"
+        valor-producto:
+          type: string
