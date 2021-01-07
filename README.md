@@ -15,7 +15,7 @@ Node.js <br/>
 
 Ejecutar los archivos `create_tables.sql` y `inserts.sql` que se encuentran dentro de la carpeta `database`.
 
-Correr el proyecto con el script `start` o desde la terminal `nodemon server.js`.
+Correr el proyecto con el script `start` o desde la terminal con `nodemon server.js`.
 
 ### Ejemplo de endpoint
 
