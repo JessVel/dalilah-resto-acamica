@@ -6,10 +6,10 @@ Crearás el backend para un sistema de pedidos online para un restaurante ponien
 
 ## Herramientas 🛠
 
-MySQL
-SQL
-Express
-Node.js
+MySQL <br/>
+SQL <br/>
+Express <br/>
+Node.js <br/>
 
 ## Para correrlo 🚀
 
