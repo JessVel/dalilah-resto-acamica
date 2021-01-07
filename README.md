@@ -22,3 +22,6 @@ Correr el proyecto con el script `start` o desde la terminal con `nodemon server
 http://localhost:3000/login <br/>
 usuario: admin <br/>
 contraseña: 12345 <br/>
+Se debe copiar el token devuelto.
+
+Para utilizar, por ejemplo el método GET, en campo "value" agregar la palabra "bearer" + TOKEN.
