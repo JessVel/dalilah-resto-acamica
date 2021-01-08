@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("../../database/connection");
+const { connection, sequelize } = require("../db/connection");
 
 //Funcion para mostrar todos los productos
 async export default function mostrarProductos() {

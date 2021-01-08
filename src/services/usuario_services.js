@@ -1,6 +1,6 @@
 const express = require("express");
-const connection = require("../../database/connection");
-const CLAVE_CIFRADO = "Acamica2021";
+const { connection, sequelize } = require("../db/connection");
+require("dotenv").config({ path: ".env" });
 const jwt = require("jsonwebtoken");
 
 async function buscarUsuario(nombre, contrasena) {
@@ -13,7 +13,7 @@ async function buscarUsuario(nombre, contrasena) {
     if (resultado.length > 0) {
       console.log("true");
       var admin = resultado[0].es_admin;
-      const token = jwt.sign({ nombre, contrasena, admin }, CLAVE_CIFRADO);
+      const token = jwt.sign({ nombre, contrasena, admin }, process.env.CLAVE_CIFRADO);
       console.log("ESTE ES EL TOKEN --> " + token);
       return token;
     } else {

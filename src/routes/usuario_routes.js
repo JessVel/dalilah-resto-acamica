@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const CLAVE_CIFRADO = "Acamica2021";
+require("dotenv").config({ path: ".env" });
 
 const { esUnTokenValido } = require("../middleware/auth");
 const { getUsuario, buscarUsuario, crearUsuario } = require("../services/usuario_services");
 
 //Endpoint para mostrar los datos del usuario autenticado
 router.get("/", esUnTokenValido, (req, res, err) => {
-  const tokenDelRequest = jwt.verify(req.headers.authorization.split(" ")[1], CLAVE_CIFRADO);
+  const tokenDelRequest = jwt.verify(req.headers.authorization.split(" ")[1], process.env.CLAVE_CIFRADO);
 
   console.log(tokenDelRequest);
 

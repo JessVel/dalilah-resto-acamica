@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
-const CLAVE_CIFRADO = "Acamica2021";
+require("dotenv").config({ path: ".env" });
 
 const { buscarUsuario } = require("../services/usuario_services");
 
 //Validar TOKEN
 function esUnTokenValido(req, res, next) {
   try {
-    const usuario = jwt.verify(req.headers.authorization.split(" ")[1], CLAVE_CIFRADO);
+    const usuario = jwt.verify(req.headers.authorization.split(" ")[1], process.env.CLAVE_CIFRADO);
     req.usuarioValidado = usuario;
     next();
   } catch (err) {
@@ -20,7 +20,7 @@ function esUnTokenValidoAdmin(req, res, next) {
     if (typeof req.headers.authorization === "undefined") {
       res.status(400).json({ error: "Usuario no autorizado" });
     } else {
-      const usuario = jwt.verify(req.headers.authorization.split(" ")[1], CLAVE_CIFRADO);
+      const usuario = jwt.verify(req.headers.authorization.split(" ")[1], process.env.CLAVE_CIFRADO);
       console.log(usuario);
       if (usuario.admin == "T") {
         req.usuarioValidado = usuario;
@@ -39,7 +39,7 @@ function esUnUsuarioValido(nombre, contrasena) {
   const usuario = buscarUsuario(nombre, contrasena);
   console.log(usuario);
   if (usuario === "true") {
-    const token = jwt.sign({ nombre, contrasena }, CLAVE_CIFRADO);
+    const token = jwt.sign({ nombre, contrasena }, process.env.CLAVE_CIFRADO);
     console.log("ESTE ES EL TOKEN --> " + token);
     return token;
   } else {

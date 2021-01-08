@@ -1,6 +1,5 @@
 const express = require("express");
-const connection = require("../../database/connection");
-const CLAVE_CIFRADO = "Acamica2021";
+const { connection, sequelize } = require("../db/connection");
 const jwt = require("jsonwebtoken");
 
 //Crear pedido
