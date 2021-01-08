@@ -13,11 +13,11 @@ Node.js <br/>
 
 ## Para correrlo 🚀
 
-Ir a la branch 
+Clonar o descargar la branch `refactorizado`
 
 Ejecutar los archivos `create_tables.sql` y `inserts.sql` que se encuentran dentro de la carpeta `db` dentro de `src`.
 
-Correr el proyecto con el script `start` o desde la terminal con `node server.js`.
+Correr el proyecto con el script `start` o desde la terminal con `node server.js`
 
 ### Ejemplo de endpoint
 
