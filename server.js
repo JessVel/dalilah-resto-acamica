@@ -4,8 +4,11 @@ const CLAVE_CIFRADO = "Acamica2021";
 const btoa = require("btoa");
 const { query } = require("express");
 const jwt = require("jsonwebtoken");
-const connection = require("./database/connection");
 
+// const sequelize = require("sequelize");
+// const connection = new sequelize("mysql://root:@127.0.0.1:3306/delilah_resto");
+
+const { connection, sequelize } = require("./database/connection");
 const app = express();
 
 app.listen(3000, () => {
@@ -163,6 +166,7 @@ app.post("/login", (req, res, err) => {
     } else {
       res.status(401).send("Usuario Invalido");
     }
+    console.log(err);
   });
 });
 
