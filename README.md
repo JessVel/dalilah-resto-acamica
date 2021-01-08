@@ -13,7 +13,9 @@ Node.js <br/>
 
 ## Para correrlo 🚀
 
-Ejecutar los archivos `create_tables.sql` y `inserts.sql` que se encuentran dentro de la carpeta `database`.
+Ir a la branch 
+
+Ejecutar los archivos `create_tables.sql` y `inserts.sql` que se encuentran dentro de la carpeta `db` dentro de `src`.
 
 Correr el proyecto con el script `start` o desde la terminal con `node server.js`.
 
